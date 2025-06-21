@@ -1,0 +1,63 @@
+[59:81:0621/110705.695798:ERROR:dbus/bus.cc:408] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory
+[59:84:0621/110705.779137:ERROR:dbus/bus.cc:408] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory
+[59:84:0621/110705.779543:ERROR:dbus/bus.cc:408] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory
+[59:81:0621/110705.784117:ERROR:dbus/bus.cc:408] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[59:81:0621/110705.784644:ERROR:dbus/bus.cc:408] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[59:81:0621/110705.785442:ERROR:dbus/bus.cc:408] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[59:81:0621/110705.785731:ERROR:dbus/bus.cc:408] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[95:95:0621/110705.851017:WARNING:ui/gfx/linux/gpu_memory_buffer_support_x11.cc:49] dri3 extension not supported.
+[95:95:0621/110705.852696:WARNING:sandbox/policy/linux/sandbox_linux.cc:415] InitializeSandbox() called with multiple threads in process gpu-process.
+[59:59:0621/110705.879099:INFO:components/enterprise/browser/controller/chrome_browser_cloud_management_controller.cc:202] No machine level policy manager exists.
+[59:81:0621/110705.918986:ERROR:dbus/bus.cc:408] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[59:81:0621/110705.962932:ERROR:dbus/bus.cc:408] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[59:81:0621/110705.963296:ERROR:dbus/bus.cc:408] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[59:59:0621/110706.008691:WARNING:device/bluetooth/dbus/bluez_dbus_manager.cc:234] Floss manager service not available, cannot set Floss enable/disable.
+[59:59:0621/110706.010190:ERROR:dbus/object_proxy.cc:590] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: 
+[59:59:0621/110706.012624:ERROR:dbus/object_proxy.cc:590] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: 
+[59:165:0621/110706.019218:ERROR:dbus/bus.cc:408] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory
+[59:165:0621/110706.019680:ERROR:dbus/bus.cc:408] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory
+[59:165:0621/110706.020138:ERROR:dbus/bus.cc:408] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory
+[59:165:0621/110706.020497:WARNING:dbus/property.cc:149] DaemonVersion: GetAndBlock: failed.
+[59:165:0621/110706.021075:ERROR:dbus/bus.cc:408] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory
+[59:165:0621/110706.022159:ERROR:dbus/bus.cc:408] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory
+[59:59:0621/110706.435851:ERROR:CONSOLE:275] "Uncaught TypeError: Cannot read properties of undefined (reading 'recordValue')", source: chrome://new-tab-page/new_tab_page.js (275)
+[59:78:0621/110706.527004:ERROR:dbus/bus.cc:408] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[59:59:0621/110706.527429:ERROR:dbus/object_proxy.cc:590] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: 
+[59:129:0621/110706.716275:ERROR:dbus/bus.cc:408] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[59:59:0621/110706.718425:ERROR:dbus/object_proxy.cc:590] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: 
+[59:87:0621/110706.743131:ERROR:dbus/bus.cc:408] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[59:59:0621/110706.744148:ERROR:dbus/object_proxy.cc:590] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: 
+[59:87:0621/110706.745139:ERROR:dbus/bus.cc:408] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[59:59:0621/110706.746415:ERROR:dbus/object_proxy.cc:590] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: 
+[59:87:0621/110706.750141:ERROR:dbus/bus.cc:408] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[59:59:0621/110706.751201:ERROR:dbus/object_proxy.cc:590] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: 
+[59:59:0621/110706.752098:WARNING:ui/base/idle/idle_linux.cc:110] None of the known D-Bus ScreenSaver services could be used.
+[59:81:0621/110716.046463:ERROR:dbus/bus.cc:408] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[59:81:0621/110716.047022:ERROR:dbus/bus.cc:408] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[59:81:0621/110716.048068:ERROR:dbus/bus.cc:408] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[59:81:0621/110716.048543:ERROR:dbus/bus.cc:408] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[59:59:0621/110716.177597:WARNING:components/download/internal/background_service/controller_impl.cc:1187] Background download complete, client: 6, completion type: 0, file size:5155
+[59:81:0621/110716.178376:ERROR:dbus/bus.cc:408] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[59:81:0621/110716.178720:ERROR:dbus/bus.cc:408] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[59:59:0621/110716.242484:WARNING:components/download/internal/background_service/controller_impl.cc:1187] Background download complete, client: 6, completion type: 0, file size:265059
+[59:81:0621/110716.243247:ERROR:dbus/bus.cc:408] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[59:81:0621/110716.244048:ERROR:dbus/bus.cc:408] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[59:59:0621/110716.385107:WARNING:components/download/internal/background_service/controller_impl.cc:1187] Background download complete, client: 6, completion type: 0, file size:883094
+[59:81:0621/110716.386113:ERROR:dbus/bus.cc:408] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[59:81:0621/110716.386697:ERROR:dbus/bus.cc:408] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[59:59:0621/110716.532768:WARNING:components/download/internal/background_service/controller_impl.cc:1187] Background download complete, client: 6, completion type: 0, file size:45153
+[59:81:0621/110716.533871:ERROR:dbus/bus.cc:408] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[59:81:0621/110716.534386:ERROR:dbus/bus.cc:408] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[59:59:0621/110716.538066:WARNING:components/download/internal/background_service/controller_impl.cc:1187] Background download complete, client: 6, completion type: 0, file size:2200227
+[59:81:0621/110716.538641:ERROR:dbus/bus.cc:408] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[59:81:0621/110716.539012:ERROR:dbus/bus.cc:408] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[59:59:0621/110717.719378:WARNING:components/download/internal/background_service/controller_impl.cc:1187] Background download complete, client: 6, completion type: 0, file size:2747168
+[59:81:0621/110717.720629:ERROR:dbus/bus.cc:408] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[59:81:0621/110717.721035:ERROR:dbus/bus.cc:408] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[59:59:0621/110717.817831:WARNING:components/download/internal/background_service/controller_impl.cc:1187] Background download complete, client: 6, completion type: 0, file size:4680
+[59:81:0621/110717.818731:ERROR:dbus/bus.cc:408] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[59:81:0621/110717.819333:ERROR:dbus/bus.cc:408] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[59:59:0621/110717.971386:WARNING:components/download/internal/background_service/controller_impl.cc:1187] Background download complete, client: 6, completion type: 0, file size:2992963
+[59:59:0621/110717.983055:WARNING:components/download/internal/background_service/controller_impl.cc:1187] Background download complete, client: 6, completion type: 0, file size:118577
+[408:408:0621/111006.315016:ERROR:services/on_device_model/ml/gpu_blocklist.cc:120] Unable to get gpu adapter
+[59:59:0621/111006.318588:ERROR:services/on_device_model/public/cpp/service_client.cc:36] Unexpected on_device_model service disconnect: The device's GPU is not supported.

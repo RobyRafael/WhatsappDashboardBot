@@ -1,0 +1,45 @@
+FROM python:3.9-slim
+
+# Install Chrome dependencies
+RUN apt-get update && apt-get install -y \
+    wget \
+    gnupg \
+    unzip \
+    curl \
+    xvfb \
+    && wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \
+    && echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list \
+    && apt-get update \
+    && apt-get install -y google-chrome-stable \
+    && rm -rf /var/lib/apt/lists/*
+
+# Set the working directory
+WORKDIR /app
+
+# Copy the requirements file
+COPY requirements.txt .
+
+# Install dependencies
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy the entire src directory
+COPY src/ ./src/
+
+# Create User_Data directory for WhatsApp Web session
+RUN mkdir -p ./User_Data_bot
+
+# Set environment variables
+ENV DISPLAY=:99
+ENV HEADLESS=true
+
+# Create a simple bot runner script
+RUN echo '#!/bin/bash\n\
+echo "Starting Xvfb..."\n\
+Xvfb :99 -screen 0 1024x768x24 &\n\
+sleep 2\n\
+echo "Starting WhatsApp Bot..."\n\
+python -c "from src.bot.whatsapp_bot import WhatsAppBot; bot = WhatsAppBot(user_data_suffix=\"bot\"); print(\"Bot initialized\"); import time; time.sleep(86400)"\n\
+' > /app/start_bot.sh && chmod +x /app/start_bot.sh
+
+# Start Xvfb and keep container running
+CMD ["/app/start_bot.sh"]

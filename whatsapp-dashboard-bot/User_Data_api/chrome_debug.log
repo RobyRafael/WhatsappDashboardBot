@@ -1,0 +1,50 @@
+[61:83:0621/110705.983807:ERROR:dbus/bus.cc:408] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory
+[61:86:0621/110705.986015:ERROR:dbus/bus.cc:408] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory
+[61:86:0621/110705.987124:ERROR:dbus/bus.cc:408] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory
+[61:83:0621/110705.993366:ERROR:dbus/bus.cc:408] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[61:83:0621/110705.994263:ERROR:dbus/bus.cc:408] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[61:83:0621/110705.995283:ERROR:dbus/bus.cc:408] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[61:83:0621/110705.996050:ERROR:dbus/bus.cc:408] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[61:61:0621/110706.072223:INFO:components/enterprise/browser/controller/chrome_browser_cloud_management_controller.cc:202] No machine level policy manager exists.
+[99:99:0621/110706.079286:WARNING:sandbox/policy/linux/sandbox_linux.cc:415] InitializeSandbox() called with multiple threads in process gpu-process.
+[61:83:0621/110706.118381:ERROR:dbus/bus.cc:408] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[61:83:0621/110706.145157:ERROR:dbus/bus.cc:408] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[61:83:0621/110706.145673:ERROR:dbus/bus.cc:408] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[61:61:0621/110706.212676:WARNING:device/bluetooth/dbus/bluez_dbus_manager.cc:234] Floss manager service not available, cannot set Floss enable/disable.
+[61:61:0621/110706.213160:ERROR:dbus/object_proxy.cc:590] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: 
+[61:61:0621/110706.215819:ERROR:dbus/object_proxy.cc:590] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: 
+[61:61:0621/110706.218524:ERROR:ui/base/accelerators/global_accelerator_listener/global_accelerator_listener_linux.cc:356] Failed to connect to signal: org.freedesktop.portal.GlobalShortcuts.Activated
+[61:61:0621/110706.219445:ERROR:dbus/object_proxy.cc:590] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: 
+[61:83:0621/110706.220177:ERROR:dbus/bus.cc:408] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[61:163:0621/110706.225787:ERROR:dbus/bus.cc:408] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory
+[61:61:0621/110706.227457:ERROR:dbus/object_proxy.cc:590] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: 
+[61:163:0621/110706.228406:ERROR:dbus/bus.cc:408] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory
+[61:163:0621/110706.231374:ERROR:dbus/bus.cc:408] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory
+[61:163:0621/110706.233234:WARNING:dbus/property.cc:149] DaemonVersion: GetAndBlock: failed.
+[61:163:0621/110706.235144:ERROR:dbus/bus.cc:408] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory
+[61:163:0621/110706.237396:ERROR:dbus/bus.cc:408] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory
+[61:61:0621/110706.721079:ERROR:CONSOLE:275] "Uncaught TypeError: Cannot read properties of undefined (reading 'recordValue')", source: chrome://new-tab-page/new_tab_page.js (275)
+[61:61:0621/110716.584458:WARNING:components/download/internal/background_service/controller_impl.cc:1187] Background download complete, client: 6, completion type: 0, file size:265059
+[61:61:0621/110716.597065:WARNING:components/download/internal/background_service/controller_impl.cc:1187] Background download complete, client: 6, completion type: 0, file size:5155
+[61:61:0621/110717.936041:WARNING:components/download/internal/background_service/controller_impl.cc:1187] Background download complete, client: 6, completion type: 0, file size:883094
+[61:61:0621/110718.060496:WARNING:components/download/internal/background_service/controller_impl.cc:1187] Background download complete, client: 6, completion type: 0, file size:45153
+[61:61:0621/110718.837449:WARNING:components/download/internal/background_service/controller_impl.cc:1187] Background download complete, client: 6, completion type: 0, file size:2200227
+[61:61:0621/110719.599376:WARNING:components/download/internal/background_service/controller_impl.cc:1187] Background download complete, client: 6, completion type: 0, file size:2992963
+[61:61:0621/110719.827194:WARNING:components/download/internal/background_service/controller_impl.cc:1187] Background download complete, client: 6, completion type: 0, file size:2747168
+[61:61:0621/110719.888858:WARNING:components/download/internal/background_service/controller_impl.cc:1187] Background download complete, client: 6, completion type: 0, file size:118577
+[61:61:0621/110720.521732:WARNING:components/download/internal/background_service/controller_impl.cc:1187] Background download complete, client: 6, completion type: 0, file size:4680
+[61:61:0621/110729.445938:INFO:CONSOLE:0] "Error with Permissions-Policy header: Unrecognized feature: 'bluetooth'.", source:  (0)
+[61:61:0621/110733.907269:INFO:CONSOLE:163] "Event handler of 'x-storagemutated-1' event must be added on the initial evaluation of worker script.", source: https://static.whatsapp.net/rsrc.php/v4/yQ/r/AJ2Sf-wSPct.js (163)
+[61:61:0621/110801.956083:INFO:CONSOLE:0] "Error with Permissions-Policy header: Unrecognized feature: 'bluetooth'.", source:  (0)
+[61:61:0621/110833.292552:INFO:CONSOLE:0] "Error with Permissions-Policy header: Unrecognized feature: 'bluetooth'.", source:  (0)
+[61:61:0621/110904.325606:INFO:CONSOLE:0] "Error with Permissions-Policy header: Unrecognized feature: 'bluetooth'.", source:  (0)
+[61:61:0621/110935.195070:INFO:CONSOLE:0] "Error with Permissions-Policy header: Unrecognized feature: 'bluetooth'.", source:  (0)
+[61:61:0621/111005.876795:INFO:CONSOLE:0] "Error with Permissions-Policy header: Unrecognized feature: 'bluetooth'.", source:  (0)
+[451:451:0621/111006.311099:ERROR:services/on_device_model/ml/gpu_blocklist.cc:120] Unable to get gpu adapter
+[61:61:0621/111006.312845:ERROR:services/on_device_model/public/cpp/service_client.cc:36] Unexpected on_device_model service disconnect: The device's GPU is not supported.
+[61:61:0621/111036.610079:INFO:CONSOLE:0] "Error with Permissions-Policy header: Unrecognized feature: 'bluetooth'.", source:  (0)
+[61:61:0621/111107.235656:INFO:CONSOLE:0] "Error with Permissions-Policy header: Unrecognized feature: 'bluetooth'.", source:  (0)
+[61:61:0621/111138.021646:INFO:CONSOLE:0] "Error with Permissions-Policy header: Unrecognized feature: 'bluetooth'.", source:  (0)
+[61:61:0621/111208.898065:INFO:CONSOLE:0] "Error with Permissions-Policy header: Unrecognized feature: 'bluetooth'.", source:  (0)
+[61:61:0621/111239.640810:INFO:CONSOLE:0] "Error with Permissions-Policy header: Unrecognized feature: 'bluetooth'.", source:  (0)
+[61:61:0621/111310.562385:INFO:CONSOLE:0] "Error with Permissions-Policy header: Unrecognized feature: 'bluetooth'.", source:  (0)
