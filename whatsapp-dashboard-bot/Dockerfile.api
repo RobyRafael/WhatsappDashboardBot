@@ -26,8 +26,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY src/ ./src/
 COPY media/ ./media/
 
-# Create necessary directories
-RUN mkdir -p ./User_Data_api ./media/uploads ./media/temp ./logs
+# Create necessary directories - menggunakan chrome_user_data untuk konsistensi dengan script lokal
+RUN mkdir -p ./chrome_user_data ./media/uploads ./media/temp ./logs
 
 # Set environment variables
 ENV DISPLAY=:99
@@ -36,12 +36,14 @@ ENV HEADLESS=true
 # Expose the API port
 EXPOSE 8001
 
-# Start script with reload-dir to exclude User_Data
+# Start script with reload-dir to exclude chrome_user_data
 RUN echo '#!/bin/bash\n\
 echo "Starting Xvfb..."\n\
 Xvfb :99 -screen 0 1024x768x24 &\n\
 sleep 2\n\
 echo "Starting API server..."\n\
+echo "💡 Session Chrome akan disimpan di ./chrome_user_data/"\n\
+echo "💡 Untuk login pertama kali, gunakan script login_whatsapp.py"\n\
 uvicorn src.api.main:app --host 0.0.0.0 --port 8001 --reload --reload-dir ./src\n\
 ' > /app/start_api.sh && chmod +x /app/start_api.sh
 

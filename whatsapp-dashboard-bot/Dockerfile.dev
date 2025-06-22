@@ -1,0 +1,39 @@
+FROM python:3.9-slim
+
+# Install Chrome dan X11 untuk GUI
+RUN apt-get update && apt-get install -y \
+    wget \
+    gnupg \
+    unzip \
+    curl \
+    xvfb \
+    x11-apps \
+    && wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \
+    && echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list \
+    && apt-get update \
+    && apt-get install -y google-chrome-stable \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
+
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY src/ ./src/
+RUN mkdir -p ./User_Data_dev ./media/uploads ./media/temp
+
+# Script untuk development
+RUN echo '#!/bin/bash\n\
+echo "🚀 Starting WhatsApp Bot Development Mode"\n\
+python3 -c "\n\
+from src.bot.whatsapp_bot import WhatsAppBot\n\
+bot = WhatsAppBot(user_data_suffix=\"dev\")\n\
+if bot.login():\n\
+    print(\"Login successful! Bot ready for API calls.\")\n\
+    while True:\n\
+        import time\n\
+        time.sleep(1)\n\
+"\n\
+' > /app/start_dev.sh && chmod +x /app/start_dev.sh
+
+CMD ["/app/start_dev.sh"]

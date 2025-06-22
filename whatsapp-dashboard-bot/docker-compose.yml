@@ -1,6 +1,24 @@
 version: '3.8'
 
 services:
+  # Service untuk development - browser terlihat
+  whatsapp-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      - ./src:/app/src
+      - ./media:/app/media
+      - ./User_Data_dev:/app/User_Data_dev  # ← Unique directory
+    environment:
+      - DISPLAY=${DISPLAY}
+      - HEADLESS=false
+    network_mode: host
+    stdin_open: true
+    tty: true
+    profiles:
+      - dev
+
   api:
     build:
       context: .

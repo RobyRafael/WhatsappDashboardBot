@@ -78,8 +78,62 @@ curl -H "X-API-Key: your-super-secret-api-key-here" http://localhost:8001/api/he
 - **POST /api/media**: Upload and send media files
 - **GET /api/health**: Health check endpoint
 
-## Contributing
-Contributions are welcome! Please open an issue or submit a pull request for any improvements or bug fixes.
+## WhatsApp Login Methods
 
-## License
-This project is licensed under the MIT License. See the LICENSE file for details.
+### Method 1: Simple Testing (Recommended for Development)
+```bash
+# Menggunakan metode sederhana dari testing.py
+python simple_test.py
+```
+
+### Method 2: Login Script
+```bash
+# Script login dengan menu lengkap
+python login_whatsapp.py
+```
+
+### Method 3: Original Testing Method
+```bash
+# Menggunakan metode original dari testing.py
+python testing.py
+```
+
+## Key Features
+
+✅ **Simple Login Detection** - Menggunakan metode try-except yang sederhana  
+✅ **QR Code Detection** - Deteksi otomatis QR code dan status login  
+✅ **30 Second Wait Time** - Waktu tunggu yang cukup untuk scan QR  
+✅ **Reliable Status Check** - Pengecekan status yang konsisten  
+✅ **Error Handling** - Penanganan error yang baik  
+
+## Troubleshooting
+
+Jika ada masalah dengan deteksi login:
+
+1. **Gunakan metode testing.py** yang sudah terbukti bekerja
+2. **Tunggu 30 detik** setelah membuka WhatsApp Web
+3. **Pastikan QR code di-scan** dengan benar
+4. **Restart script** jika login gagal
+
+## Usage Examples
+
+### Basic Usage
+```python
+from src.bot.whatsapp_bot import WhatsAppBot
+import time
+
+# Setup bot
+bot = WhatsAppBot()
+
+# Open WhatsApp Web (like testing.py)
+bot.driver.get("https://web.whatsapp.com")
+time.sleep(30)  # Wait for login
+
+# Check login status
+if bot.check_login_status():
+    # Send message
+    result = bot.send_message("+628123456789", "Hello!")
+    print(result)
+
+bot.close()
+```
