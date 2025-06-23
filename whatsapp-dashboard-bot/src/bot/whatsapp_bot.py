@@ -8,6 +8,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.keys import Keys
 from urllib.parse import quote
+import re
 
 # Setup logger untuk module ini
 logger = logging.getLogger(__name__)
@@ -334,6 +335,17 @@ class WhatsAppBot:
             logger.error(f"Debug error: {e}")
             print(f"❌ Debug error: {e}")
 
+    def format_phone_number(self, phone_number):
+        """Format nomor telepon dengan membersihkan spasi, dash, dan karakter non-digit"""
+        # Hapus semua karakter kecuali digit dan tanda +
+        cleaned_number = re.sub(r'[^\d+]', '', phone_number)
+        
+        # Pastikan dimulai dengan +
+        if not cleaned_number.startswith('+'):
+            cleaned_number = '+' + cleaned_number
+        
+        return cleaned_number
+
     def send_message(self, phone_number, message):
         """Kirim pesan teks ke nomor WhatsApp dengan visual feedback"""
         logger.info(f"🔍 send_message called - Phone: {phone_number}, Message: '{message}'")
@@ -353,8 +365,7 @@ class WhatsAppBot:
             
         try:
             # Format nomor telepon
-            if not phone_number.startswith('+'):
-                phone_number = '+' + phone_number.replace(' ', '').replace('-', '')
+            phone_number = self.format_phone_number(phone_number)
             
             logger.info(f"📞 Formatted phone number: {phone_number}")
             print(f"📞 Using phone number: {phone_number}")
@@ -493,23 +504,42 @@ class WhatsAppBot:
             print("🔍 Step 3b: Looking for send button...")
             
             send_selectors = [
-                # Selector terbaru dengan wds-ic-send-filled
+                # Selector berdasarkan HTML structure yang diberikan - PRIORITAS TINGGI
+                '//button[@data-tab="11"][@aria-label="Send"]',
+                '//button[@aria-label="Send"][contains(@class, "x1c4vz4f")]',
+                '//button[@data-tab="11"]//span[@data-icon="wds-ic-send-filled"]',
+                '//button[contains(@class, "x1c4vz4f") and contains(@class, "x2lah0s")][@aria-label="Send"]',
+                
+                # Selector dengan kombinasi class CSS yang spesifik
+                '//button[contains(@class, "x1c4vz4f x2lah0s xdl72j9")][@aria-label="Send"]',
+                '//button[contains(@class, "x1heor9g xmper1u x100vrsf")][@aria-label="Send"]',
+                
+                # Selector berdasarkan span dengan data-icon
+                '//span[@data-icon="wds-ic-send-filled"]/parent::button',
+                '//span[@data-icon="wds-ic-send-filled"]/ancestor::button[@aria-label="Send"]',
+                '//button[.//span[@data-icon="wds-ic-send-filled"]]',
+                
+                # Selector berdasarkan SVG title
+                '//button[.//svg//title[text()="wds-ic-send-filled"]]',
+                '//button[.//title[text()="wds-ic-send-filled"]]',
+                
+                # Selector terbaru dengan wds-ic-send-filled (existing)
                 '//span[contains(@class, "wds-ic-send-filled")]',
                 '//*[contains(@class, "wds-ic-send-filled")]',
                 '//button[.//span[contains(@class, "wds-ic-send-filled")]]',
                 '//div[.//span[contains(@class, "wds-ic-send-filled")]]',
                 
-                # Selector lama yang masih mungkin aktif
+                # Selector lama yang masih mungkin aktif (existing)
                 '//span[@data-icon="send"]',
                 '//span[contains(@class, "wds-ic-send")]',
                 '//*[contains(@class, "wds-ic-send")]',
                 
-                # Selector baru yang ditambahkan
+                # Selector baru yang ditambahkan sebelumnya (existing)
                 '//span[contains(@class, "wds-ic-send")]//following-sibling::*[@aria-label="Send"]',
                 '//button[@aria-label="Send"]',
                 '//div[@aria-label="Send"]',
                 
-                # Selector generik
+                # Selector generik (existing)
                 '//span[@data-testid="send"]',
                 '//button[contains(@class, "send")]',
                 '//div[contains(@class, "send")]',
@@ -518,7 +548,7 @@ class WhatsAppBot:
                 '//button[contains(text(), "Send")]',
                 '//div[contains(text(), "Send")]',
                 
-                # Kombinasi dengan aria-label untuk button dan div
+                # Kombinasi dengan aria-label untuk button dan div (existing)
                 '//*[@aria-label="Send" or @aria-label="Kirim"]',
                 '//button[contains(@aria-label, "Send")]',
                 '//div[contains(@aria-label, "Send")]'
@@ -556,24 +586,43 @@ class WhatsAppBot:
                     print("🔧 Step 4: Trying JavaScript fallback...")
                     
                     js_script = """
-                    // Cari tombol send dengan class dan aria-label terbaru
-                    var sendButton = document.querySelector('.wds-ic-send-filled') ||
-                                   document.querySelector('.wds-ic-send') ||
-                                   document.querySelector('[data-icon="send"]') ||
-                                   document.querySelector('[aria-label*="Send"]') ||
-                                   document.querySelector('[aria-label*="Kirim"]') ||
-                                   document.querySelector('button[aria-label*="Send"]') ||
-                                   document.querySelector('div[aria-label*="Send"]') ||
-                                   document.querySelector('span[data-icon="send"]');
+                    // Cari tombol send dengan selector yang lebih spesifik berdasarkan HTML structure
+                    var sendButton = 
+                        // Prioritas tinggi - berdasarkan HTML structure yang diberikan
+                        document.querySelector('button[data-tab="11"][aria-label="Send"]') ||
+                        document.querySelector('button[aria-label="Send"] span[data-icon="wds-ic-send-filled"]') ||
+                        document.querySelector('button[aria-label="Send"][class*="x1c4vz4f"]') ||
+                        
+                        // Berdasarkan data-icon dan aria-label
+                        document.querySelector('button[aria-label="Send"]') ||
+                        document.querySelector('span[data-icon="wds-ic-send-filled"]') ||
+                        
+                        // Fallback ke selector lama
+                        document.querySelector('.wds-ic-send-filled') ||
+                        document.querySelector('.wds-ic-send') ||
+                        document.querySelector('[data-icon="send"]') ||
+                        document.querySelector('[aria-label*="Send"]') ||
+                        document.querySelector('[aria-label*="Kirim"]') ||
+                        document.querySelector('button[aria-label*="Send"]') ||
+                        document.querySelector('div[aria-label*="Send"]') ||
+                        document.querySelector('span[data-icon="send"]');
                     
                     if (sendButton) {
-                        // Jika elemen adalah icon, cari parent button/div yang clickable
-                        var clickableParent = sendButton.closest('button') || 
+                        // Jika elemen adalah icon/span, cari parent button yang clickable
+                        var clickableParent = sendButton.closest('button[aria-label="Send"]') ||
+                                            sendButton.closest('button[data-tab="11"]') ||
+                                            sendButton.closest('button') || 
                                             sendButton.closest('div[role="button"]') || 
                                             sendButton.closest('div[aria-label*="Send"]') ||
                                             sendButton;
-                        clickableParent.click();
-                        return 'success';
+                        
+                        // Pastikan element visible sebelum click
+                        if (clickableParent.offsetParent !== null) {
+                            clickableParent.click();
+                            return 'success';
+                        } else {
+                            return 'not_visible';
+                        }
                     }
                     return 'not_found';
                     """
@@ -584,6 +633,9 @@ class WhatsAppBot:
                         logger.info("✅ Message sent with JavaScript")
                         print("✅ Message sent successfully with JavaScript!")
                         return {"status": "success", "message": "Pesan berhasil dikirim (JavaScript)"}
+                    elif result == 'not_visible':
+                        logger.error("❌ Send button found but not visible")
+                        print("❌ Send button found but not visible")
                     else:
                         logger.error("❌ Send button not found with JavaScript")
                         print("❌ Send button not found with JavaScript")
@@ -617,8 +669,7 @@ class WhatsAppBot:
             
         try:
             # Format nomor telepon
-            if not phone_number.startswith('+'):
-                phone_number = '+' + phone_number.replace(' ', '').replace('-', '')
+            phone_number = self.format_phone_number(phone_number)
             
             # Buka chat dengan nomor tertentu
             url = f"https://web.whatsapp.com/send?phone={phone_number}"
@@ -664,8 +715,20 @@ class WhatsAppBot:
                 except:
                     pass  # Caption optional
             
-            # Klik tombol send dengan selector terbaru yang diperbaiki
+            # Klik tombol send dengan selector yang diperbaiki berdasarkan HTML structure
             send_selectors = [
+                # Selector berdasarkan HTML structure yang diberikan - PRIORITAS TINGGI
+                '//button[@data-tab="11"][@aria-label="Send"]',
+                '//button[@aria-label="Send"][contains(@class, "x1c4vz4f")]',
+                '//button[@data-tab="11"]//span[@data-icon="wds-ic-send-filled"]',
+                '//button[contains(@class, "x1c4vz4f") and contains(@class, "x2lah0s")][@aria-label="Send"]',
+                
+                # Selector dengan span data-icon
+                '//span[@data-icon="wds-ic-send-filled"]/parent::button',
+                '//span[@data-icon="wds-ic-send-filled"]/ancestor::button[@aria-label="Send"]',
+                '//button[.//span[@data-icon="wds-ic-send-filled"]]',
+                
+                # Selector existing
                 '//span[contains(@class, "wds-ic-send-filled")]',
                 '//span[@data-icon="send"]',
                 '//*[contains(@class, "wds-ic-send")]',
