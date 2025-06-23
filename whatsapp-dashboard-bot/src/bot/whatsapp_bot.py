@@ -37,8 +37,8 @@ class WhatsAppBot:
         chrome_options.add_experimental_option("excludeSwitches", ["enable-automation"])
         
         # Cek apakah running dalam environment headless
-        # headless = os.getenv("HEADLESS", "false").lower() == "true"
-        headless = False  # Set ke True untuk mode headless, False untuk mode visible
+        headless = os.getenv("HEADLESS", "false").lower() == "true"
+        # headless = False  # Set ke True untuk mode headless, False untuk mode visible
 
         if headless:
             # Mode headless untuk production/Docker

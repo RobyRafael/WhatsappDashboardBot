@@ -34,6 +34,7 @@ services:
       - API_PORT=8001
       - API_KEY=whatsapp-bot-secret-key-2024
       - HEADLESS=true
+      # - HEADLESS=false
     restart: unless-stopped
 
   dashboard:
