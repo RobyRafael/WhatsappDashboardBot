@@ -504,16 +504,24 @@ class WhatsAppBot:
                 '//span[contains(@class, "wds-ic-send")]',
                 '//*[contains(@class, "wds-ic-send")]',
                 
-                # Selector generik
+                # Selector baru yang ditambahkan
+                '//span[contains(@class, "wds-ic-send")]//following-sibling::*[@aria-label="Send"]',
                 '//button[@aria-label="Send"]',
                 '//div[@aria-label="Send"]',
+                
+                # Selector generik
                 '//span[@data-testid="send"]',
                 '//button[contains(@class, "send")]',
                 '//div[contains(@class, "send")]',
                 '//span[contains(@class, "send")]',
                 '//*[@data-icon="send"]',
                 '//button[contains(text(), "Send")]',
-                '//div[contains(text(), "Send")]'
+                '//div[contains(text(), "Send")]',
+                
+                # Kombinasi dengan aria-label untuk button dan div
+                '//*[@aria-label="Send" or @aria-label="Kirim"]',
+                '//button[contains(@aria-label, "Send")]',
+                '//div[contains(@aria-label, "Send")]'
             ]
             
             sent = False
@@ -542,23 +550,28 @@ class WhatsAppBot:
             if sent:
                 return {"status": "success", "message": "Pesan berhasil dikirim"}
             else:
-                # Metode 4: Fallback dengan JavaScript
+                # Metode 4: Fallback dengan JavaScript yang diperbaiki
                 try:
                     logger.info("🔧 Trying JavaScript fallback...")
                     print("🔧 Step 4: Trying JavaScript fallback...")
                     
                     js_script = """
-                    // Cari tombol send dengan class terbaru
+                    // Cari tombol send dengan class dan aria-label terbaru
                     var sendButton = document.querySelector('.wds-ic-send-filled') ||
                                    document.querySelector('.wds-ic-send') ||
                                    document.querySelector('[data-icon="send"]') ||
                                    document.querySelector('[aria-label*="Send"]') ||
+                                   document.querySelector('[aria-label*="Kirim"]') ||
                                    document.querySelector('button[aria-label*="Send"]') ||
+                                   document.querySelector('div[aria-label*="Send"]') ||
                                    document.querySelector('span[data-icon="send"]');
                     
                     if (sendButton) {
                         // Jika elemen adalah icon, cari parent button/div yang clickable
-                        var clickableParent = sendButton.closest('button') || sendButton.closest('div[role="button"]') || sendButton;
+                        var clickableParent = sendButton.closest('button') || 
+                                            sendButton.closest('div[role="button"]') || 
+                                            sendButton.closest('div[aria-label*="Send"]') ||
+                                            sendButton;
                         clickableParent.click();
                         return 'success';
                     }
@@ -651,11 +664,16 @@ class WhatsAppBot:
                 except:
                     pass  # Caption optional
             
-            # Klik tombol send dengan selector terbaru
+            # Klik tombol send dengan selector terbaru yang diperbaiki
             send_selectors = [
                 '//span[contains(@class, "wds-ic-send-filled")]',
                 '//span[@data-icon="send"]',
-                '//*[contains(@class, "wds-ic-send")]'
+                '//*[contains(@class, "wds-ic-send")]',
+                '//button[@aria-label="Send"]',
+                '//div[@aria-label="Send"]',
+                '//*[@aria-label="Send" or @aria-label="Kirim"]',
+                '//button[contains(@aria-label, "Send")]',
+                '//div[contains(@aria-label, "Send")]'
             ]
             
             sent = False

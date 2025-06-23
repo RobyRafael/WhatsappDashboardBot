@@ -1,139 +1,415 @@
 # WhatsApp Dashboard Bot
 
-## Overview
-The WhatsApp Dashboard Bot is a modular application designed to facilitate the sending of messages and media through WhatsApp via a bot interface. This project is built using Python with FastAPI for the backend and includes a dashboard for managing media uploads and notifications.
+![WhatsApp Bot](https://img.shields.io/badge/WhatsApp-Bot-25D366?style=for-the-badge&logo=whatsapp)
+![Python](https://img.shields.io/badge/Python-3.8+-3776AB?style=for-the-badge&logo=python)
+![FastAPI](https://img.shields.io/badge/FastAPI-0.104.1-009688?style=for-the-badge&logo=fastapi)
+![Docker](https://img.shields.io/badge/Docker-Ready-2496ED?style=for-the-badge&logo=docker)
 
-## Project Structure
+## 📋 Overview
+
+WhatsApp Dashboard Bot adalah aplikasi modular yang memungkinkan pengiriman pesan dan media melalui WhatsApp Web menggunakan Selenium automation. Project ini dibangun dengan Python, FastAPI untuk backend API, dan dashboard web untuk manajemen media dan notifikasi.
+
+**Fitur Utama:**
+- 🤖 **Automated WhatsApp Web** - Bot otomatis dengan session persistent
+- 📱 **Multi-Modal Messaging** - Support text dan media files
+- 🌐 **RESTful API** - FastAPI dengan dokumentasi Swagger
+- 📊 **Web Dashboard** - Interface untuk upload dan manage media
+- 🔒 **Secure Authentication** - API key protection
+- 🐳 **Docker Ready** - Containerized deployment
+- 🔄 **Session Management** - Login sekali, pakai berkali-kali
+
+## 🏗️ Project Structure
+
 ```
-whatsapp-dashboard-bot
-├── src
-│   ├── bot                # Contains the WhatsApp bot implementation
-│   ├── api                # Contains the FastAPI application and routes
-│   ├── dashboard          # Contains the dashboard application for media management
-│   └── utils              # Contains utility functions for database and logging
-├── media                  # Directory for storing uploaded media files
-│   ├── uploads            # Directory for uploaded media
-│   └── temp               # Directory for temporary media files
-├── requirements.txt       # Python dependencies
-├── docker-compose.yml     # Docker configuration for services
-├── Dockerfile.bot         # Dockerfile for the WhatsApp bot
-├── Dockerfile.api         # Dockerfile for the API
-├── Dockerfile.dashboard    # Dockerfile for the dashboard
-└── README.md              # Project documentation
+whatsapp-dashboard-bot/
+├── 📁 src/
+│   ├── 📁 bot/
+│   │   ├── whatsapp_bot.py      # Core WhatsApp automation
+│   │   └── config.py            # Bot configuration
+│   ├── 📁 api/
+│   │   └── main.py              # FastAPI application
+│   └── 📁 dashboard/
+│       └── app.py               # Web dashboard
+├── 📁 media/
+│   ├── uploads/                 # Uploaded media files
+│   └── temp/                    # Temporary files
+├── 📁 chrome_user_data/         # Chrome session data (auto-generated)
+├── 📁 User_Data*/               # Multiple Chrome profiles
+├── 🐳 docker-compose.yml        # Docker services
+├── 🐳 Dockerfile.*             # Docker configurations
+├── 📄 requirements.txt         # Python dependencies
+├── 🧪 testing.py               # Manual testing script
+├── 🧪 testing_send_message.py  # Interactive testing
+├── 🔑 login_whatsapp.py        # Login helper script
+└── 📖 README.md                # Documentation
 ```
 
-## Getting Started
+## 🚀 Quick Start
 
 ### Prerequisites
-- Python 3.8 or higher
-- Docker and Docker Compose
+
+- **Python 3.8+**
+- **Google Chrome** (latest version)
+- **ChromeDriver** (auto-managed by Selenium)
+- **Docker & Docker Compose** (optional)
 
 ### Installation
-1. Clone the repository:
-   ```
+
+1. **Clone Repository**
+   ```bash
    git clone https://github.com/RobyRafael/whatsapp-dashboard-bot.git
    cd whatsapp-dashboard-bot
    ```
 
-2. Install the required Python packages:
-   ```
+2. **Install Dependencies**
+   ```bash
    pip install -r requirements.txt
    ```
 
-### Configuration
-Before running the application, you need to set your API key:
-
-1. **Option 1: Environment Variable**
+3. **Setup Environment**
    ```bash
+   # Windows
+   set API_KEY=your-super-secret-api-key-here
+   set HEADLESS=false
+   
+   # Linux/Mac
    export API_KEY="your-super-secret-api-key-here"
+   export HEADLESS="false"
    ```
 
-2. **Option 2: Edit docker-compose.yml**
-   Change the API_KEY value in the docker-compose.yml file
+### 🔧 Configuration
 
-### Running the Application
-To run the application using Docker, execute the following command:
+Edit environment variables in `docker-compose.yml` or set them locally:
+
+```yaml
+environment:
+  - API_KEY=your-super-secret-api-key-here
+  - HEADLESS=false  # Set to true for production
 ```
+
+## 📱 WhatsApp Login Methods
+
+### Method 1: Interactive Testing (Recommended for Development)
+```bash
+python testing_send_message.py
+```
+**Features:**
+- ✅ Interactive menu system
+- ✅ Visual browser (non-headless)
+- ✅ Step-by-step debugging
+- ✅ Real-time element inspection
+
+### Method 2: Simple Login Script
+```bash
+python login_whatsapp.py
+```
+**Features:**
+- ✅ Clean login interface
+- ✅ Session persistence
+- ✅ QR code guidance
+
+### Method 3: Original Testing
+```bash
+python testing.py
+```
+**Features:**
+- ✅ Basic functionality test
+- ✅ Login validation
+
+## 🐳 Docker Deployment
+
+### Development Mode (with GUI)
+```bash
+# Set environment for visible browser
+echo "HEADLESS=false" > .env
 docker-compose up --build
 ```
 
-This command will build the necessary Docker images and start the services defined in `docker-compose.yml`.
+### Production Mode (headless)
+```bash
+# Set environment for headless browser
+echo "HEADLESS=true" > .env
+docker-compose up --build -d
+```
 
-### Accessing the Services
-Once the application is running, you can access:
-
+### Services
+- **API Service**: http://localhost:8000
 - **Dashboard**: http://localhost:5000
-- **API Documentation**: http://localhost:8001/docs
-- **API Health Check**: http://localhost:8001/api/health
 
-### API Authentication
-All API requests require the `X-API-Key` header with your configured API key:
+## 🌐 API Documentation
+
+### Authentication
+All API requests require the `X-API-Key` header:
 
 ```bash
-curl -H "X-API-Key: your-super-secret-api-key-here" http://localhost:8001/api/health
+curl -H "X-API-Key: your-api-key-here" \
+     -H "Content-Type: application/json" \
+     http://localhost:8000/api/health
 ```
 
-### API Endpoints
-- **POST /api/messages**: Send a message via WhatsApp
-- **POST /api/media**: Upload and send media files
-- **GET /api/health**: Health check endpoint
+### Endpoints
 
-## WhatsApp Login Methods
-
-### Method 1: Simple Testing (Recommended for Development)
+#### 📤 Send Text Message
 ```bash
-# Menggunakan metode sederhana dari testing.py
-python simple_test.py
+POST /api/messages
 ```
 
-### Method 2: Login Script
+**Request:**
+```json
+{
+  "phone_number": "+628123456789",
+  "message": "Hello from WhatsApp Bot!"
+}
+```
+
+**Response:**
+```json
+{
+  "status": "success",
+  "message": "Pesan berhasil dikirim",
+  "timestamp": "2024-01-01T12:00:00"
+}
+```
+
+#### 📎 Send Media File
 ```bash
-# Script login dengan menu lengkap
+POST /api/media
+```
+
+**Request (multipart/form-data):**
+- `file`: Media file (image, video, document)
+- `phone_number`: Target phone number
+- `caption`: Optional caption
+
+#### 🔍 Health Check
+```bash
+GET /api/health
+```
+
+**Response:**
+```json
+{
+  "status": "healthy",
+  "timestamp": "2024-01-01T12:00:00",
+  "bot_status": "available",
+  "login_status": "logged_in",
+  "session_info": {
+    "user_data_dir": "chrome_user_data",
+    "profile": "WhatsApp",
+    "headless": false
+  }
+}
+```
+
+#### 🔍 Login Status
+```bash
+GET /api/login-status
+```
+
+#### 🛠️ Debug Information
+```bash
+POST /api/debug
+```
+
+### 📖 Interactive API Documentation
+Visit: http://localhost:8000/docs
+
+## 💻 Local Development
+
+### 1. Setup Local Environment
+```bash
+# Install dependencies
+pip install -r requirements.txt
+
+# Run API server
+cd src
+python -m uvicorn api.main:app --host 0.0.0.0 --port 8000 --reload
+
+# Run dashboard (separate terminal)
+cd dashboard
+python app.py
+```
+
+### 2. Testing WhatsApp Integration
+```bash
+# Interactive testing with visual browser
+python testing_send_message.py
+
+# Quick login test
 python login_whatsapp.py
 ```
 
-### Method 3: Original Testing Method
-```bash
-# Menggunakan metode original dari testing.py
-python testing.py
-```
+## 🔧 Usage Examples
 
-## Key Features
-
-✅ **Simple Login Detection** - Menggunakan metode try-except yang sederhana  
-✅ **QR Code Detection** - Deteksi otomatis QR code dan status login  
-✅ **30 Second Wait Time** - Waktu tunggu yang cukup untuk scan QR  
-✅ **Reliable Status Check** - Pengecekan status yang konsisten  
-✅ **Error Handling** - Penanganan error yang baik  
-
-## Troubleshooting
-
-Jika ada masalah dengan deteksi login:
-
-1. **Gunakan metode testing.py** yang sudah terbukti bekerja
-2. **Tunggu 30 detik** setelah membuka WhatsApp Web
-3. **Pastikan QR code di-scan** dengan benar
-4. **Restart script** jika login gagal
-
-## Usage Examples
-
-### Basic Usage
+### Basic Bot Usage
 ```python
 from src.bot.whatsapp_bot import WhatsAppBot
-import time
+import os
 
-# Setup bot
+# Set environment for visible browser
+os.environ["HEADLESS"] = "false"
+
+# Initialize bot
 bot = WhatsAppBot()
 
-# Open WhatsApp Web (like testing.py)
-bot.driver.get("https://web.whatsapp.com")
-time.sleep(30)  # Wait for login
-
-# Check login status
-if bot.check_login_status():
+# Login (browser will open)
+if bot.login():
+    print("✅ Login successful!")
+    
     # Send message
-    result = bot.send_message("+628123456789", "Hello!")
+    result = bot.send_message("+628123456789", "Hello World!")
+    print(result)
+    
+    # Send media
+    result = bot.send_media("+628123456789", "path/to/image.jpg", "Caption text")
     print(result)
 
+# Close bot
 bot.close()
 ```
+
+### API Client Example
+```python
+import requests
+
+API_URL = "http://localhost:8000"
+API_KEY = "your-api-key-here"
+headers = {"X-API-Key": API_KEY}
+
+# Send message
+response = requests.post(
+    f"{API_URL}/api/messages",
+    json={
+        "phone_number": "+628123456789",
+        "message": "Hello from API!"
+    },
+    headers=headers
+)
+print(response.json())
+
+# Upload and send media
+with open("image.jpg", "rb") as f:
+    files = {"file": f}
+    data = {
+        "phone_number": "+628123456789",
+        "caption": "Image caption"
+    }
+    response = requests.post(
+        f"{API_URL}/api/media",
+        files=files,
+        data=data,
+        headers=headers
+    )
+print(response.json())
+```
+
+## 🔍 Troubleshooting
+
+### Login Issues
+1. **QR Code tidak muncul**
+   ```bash
+   # Gunakan mode visible browser
+   set HEADLESS=false
+   python login_whatsapp.py
+   ```
+
+2. **Session expired**
+   ```bash
+   # Hapus session data
+   rmdir /s chrome_user_data
+   python login_whatsapp.py
+   ```
+
+3. **Element not found**
+   ```bash
+   # Debug page elements
+   python testing_send_message.py
+   # Pilih menu "2. Debug halaman"
+   ```
+
+### API Issues
+1. **Bot not available**
+   - Pastikan WhatsApp Web sudah login
+   - Restart container: `docker-compose restart api`
+
+2. **Message sending failed**
+   - Cek nomor telepon format (+628xxx)
+   - Pastikan kontak sudah ada di WhatsApp
+   - Gunakan debug endpoint: `POST /api/debug`
+
+### Browser Issues
+1. **Chrome not found**
+   ```bash
+   # Install Chrome atau update PATH
+   # Windows: Download dari google.com/chrome
+   ```
+
+2. **ChromeDriver issues**
+   ```bash
+   # Update Selenium
+   pip install --upgrade selenium
+   ```
+
+## 🔐 Security
+
+### API Key Management
+- Gunakan API key yang kuat (minimal 32 karakter)
+- Jangan commit API key ke repository
+- Gunakan environment variables
+
+### Session Security
+- Session WhatsApp disimpan di `chrome_user_data/`
+- Backup session untuk production
+- Rotate session secara berkala
+
+## 📊 Monitoring
+
+### Logs
+```bash
+# Docker logs
+docker-compose logs -f api
+
+# Local logs
+python -m uvicorn api.main:app --log-level info
+```
+
+### Health Monitoring
+```bash
+# Check API health
+curl -H "X-API-Key: your-key" http://localhost:8000/api/health
+
+# Check login status
+curl -H "X-API-Key: your-key" http://localhost:8000/api/login-status
+```
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create feature branch: `git checkout -b feature/amazing-feature`
+3. Commit changes: `git commit -m 'Add amazing feature'`
+4. Push to branch: `git push origin feature/amazing-feature`
+5. Open Pull Request
+
+## ⚖️ Legal Notice
+
+This project is for educational and personal use only. Please ensure compliance with:
+- WhatsApp Terms of Service
+- Local regulations regarding automated messaging
+- Privacy laws and consent requirements
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🔗 Resources
+
+- [WhatsApp Web](https://web.whatsapp.com/)
+- [Selenium Documentation](https://selenium-python.readthedocs.io/)
+- [FastAPI Documentation](https://fastapi.tiangolo.com/)
+- [Docker Documentation](https://docs.docker.com/)
+
+---
+
+**📞 Support**: Create an issue on GitHub for questions and bug reports.
+
+**⭐ Star this repo** if you find it helpful!
